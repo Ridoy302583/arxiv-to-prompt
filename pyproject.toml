@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arxiv-to-prompt"
+version = "0.1.0"
+description = "Extract and expand LaTeX source from arXiv papers for LLM prompts"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "MIT"}
+authors = [
+    {name = "Zenna Tavares", email = "zennatavares@gmail.com"}
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+    "Topic :: Text Processing :: Markup :: LaTeX",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = ["requests>=2.25.0"]  # Added requests for better HTTP handling
+
+[project.urls]
+"Homepage" = "https://github.com/zenna/arxiv-to-prompt"
+"Bug Tracker" = "https://github.com/zenna/arxiv-to-prompt/issues"
+"Documentation" = "https://github.com/zenna/arxiv-to-prompt#readme"
+
+[project.scripts]
+arxiv-to-prompt = "arxiv_to_prompt.cli:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black",
+    "isort",
+    "build",
+    "twine",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
+
+# Note: The latexpand tool is a command-line utility that needs to be installed
+# separately on the system, typically via the texlive-extra-utils package
